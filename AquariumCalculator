@@ -1,0 +1,79 @@
+<center><font size="14">AQUARIUM CALCULATOR</font></center>
+<?php
+$result = "";
+class aquacalc
+{
+    var $a;
+    var $b;
+    var $c;
+
+    function checkopration($oprator)
+    {
+        switch($oprator)
+        {
+            case '+':
+            return $this->a * $this->b * $this->c / 1000;
+            break;
+
+            case '-':
+            return $this->a * $this->b * $this->c / 1000 * 3.7854;
+            break;
+
+            case '*':
+            return $this->a * $this->b * $this->c / 1000 * 4.5461;
+            break;
+
+            default:
+            return "Sorry No command found";
+        }
+    }
+    function getresult($a, $b, $c, $d)
+    {
+        $this->a = $a;
+        $this->b = $b;
+        $this->c = $c;
+        return $this->checkopration($d);
+    }
+}
+
+$cal = new aquacalc();
+if(isset($_POST['submit']))
+{
+    $result = $cal->getresult($_POST['n1'],$_POST['n2'],$_POST['n3'],$_POST['op']);
+}
+?>
+
+<form method="post">
+<table align="center">
+    <tr>
+        <td>Enter hight</td>
+        <td><input type="text" name="n1"></td>
+    </tr>
+
+    <tr>
+        <td>Enter width</td>
+        <td><input type="text" name="n2"></td>
+    </tr>
+    <tr>
+        <td>Enter lenght</td>
+        <td><input type="text" name="n3"></td>
+
+    <tr>
+        <td>Select Option</td>
+        <td><select name="op">
+            <option value="+">Liters</option>
+            <option value="-">US gallons</option>
+            <option value="*">UK gallons</option>
+        </select></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td><input type="submit" name="submit" value="                =                "></td>
+    </tr>
+    <tr>
+        <td><strong><?php echo "The result is: ", $result, " liters"; ?><strong></td>
+    </tr>
+
+</table>
+</form>
